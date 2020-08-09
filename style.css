@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(rgba(248, 236, 228, .6), rgba(222, 233, 246, .8)), url(imgs/bg.jpg) no-repeat;
+    background-size: cover;
+}
+
+/*-------------------------------------
+      ViewPort
+-------------------------------------*/
+
+.viewport {
+    width: 42vw;
+    height: 21vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1300px;
+    /* creates 3D cube*/
+}
+/*For viewport Shadow*/
+.viewport::after{
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 20%;
+    background-color: #83A6FF;
+    z-index:-1;
+    top: 140%;
+    left: -10%;
+    filter: blur(50px);
+}
+
+.cube {
+    width: 100%;
+    height: 33.3333333%;
+    transform-style: preserve-3d;
+    position: relative;
+    /* transform: rotateY(270deg); */
+    /*transform property Helps to rotate cube*/
+    /*0deg for front 180deg for back 90deg for left -90deg for right*/
+}
+
+.cube-2 {
+    /*Second cube should have higher value than rest of the cubes*/
+    z-index: 10;
+}
+
+/*-------------------------------------
+      Cube slides
+-------------------------------------*/
+
+.cube-1{
+    transition: transform .4s;
+}
+
+.cube-2{
+    z-index: 10;
+    transition: transform .4s .2s;
+}
+
+.cube-3{
+    transition: transform .4s .4s;
+}
+
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+/*Height of each cube=7vw*/
+
+/*-------------------------------------
+      FRONT CUBE
+-------------------------------------*/
+
+.front {
+    transform: translateZ(21vw);
+    /* +ve value will move it towards user 42/2 becuase they are placed at the centre of viewport */
+}
+
+.cube-1 .front {
+    background: url(imgs/slide-8.jpg) no-repeat 50% 0;
+    background-size: cover;
+    /*background image should start from top y-axis=0 to centre horizontally x-axis=50*/
+}
+
+.cube-2 .front {
+    background: url(imgs/slide-8.jpg) no-repeat 50% -7vw;
+    background-size: cover;
+}
+
+.cube-3 .front {
+    background: url(imgs/slide-8.jpg) no-repeat 50% -14vw;
+    background-size: cover;
+}
+
+
+/*-------------------------------------
+      BACK CUBE
+-------------------------------------*/
+
+.back {
+    transform: translateZ(-21vw) rotateY(180deg);
+}
+
+.cube-1 .back {
+    background: url(imgs/slide-12.jpg) no-repeat 50% 0;
+    background-size: cover;
+    /*background image should start from top y-axis=0 to centre horizontally x-axis=50*/
+}
+
+.cube-2 .back {
+    background: url(imgs/slide-12.jpg) no-repeat 50% -7vw;
+    background-size: cover;
+}
+
+.cube-3 .back {
+    background: url(imgs/slide-12.jpg) no-repeat 50% -14vw;
+    background-size: cover;
+}
+
+/*-------------------------------------
+      LEFT CUBE
+-------------------------------------*/
+
+.left {
+    transform: translateX(-21vw) rotateY(-90deg);
+}
+
+
+.cube-1 .left {
+    background: url(imgs/slide-13.jpg) no-repeat 50% 0;
+    background-size: cover;
+    /*background image should start from top y-axis=0 to centre horizontally x-axis=50*/
+}
+
+.cube-2 .left {
+    background: url(imgs/slide-13.jpg) no-repeat 50% -7vw;
+    background-size: cover;
+}
+
+.cube-3 .left {
+    background: url(imgs/slide-13.jpg) no-repeat 50% -14vw;
+    background-size: cover;
+}
+
+/*-------------------------------------
+      RIGHT CUBE
+-------------------------------------*/
+
+.right {
+    transform: translateX(21vw) rotateY(90deg);
+}
+
+.cube-1 .right {
+    background: url(imgs/slide-9.jpg) no-repeat 50% 0;
+    background-size: cover;
+    /*background image should start from top y-axis=0 to centre horizontally x-axis=50*/
+}
+
+.cube-2 .right {
+    background: url(imgs/slide-9.jpg) no-repeat 50% -7vw;
+    background-size: cover;
+}
+
+.cube-3 .right {
+    background: url(imgs/slide-9.jpg) no-repeat 50% -14vw;
+    background-size: cover;
+}
+
+.top {
+    /*The top side length = length of cube because it covers cube*/
+    height: 42vw;
+    background-color: #111;
+    transform: translateY(-21vw) rotateX(90deg);
+}
+
+.bottom {
+    height: 42vw;
+    background-color: #111;
+    transform: translateY(-14vw) rotateX(-90deg);
+    /*14 because 1/3 of cube, height of each part is is 33%=7vw of entire cube height*/
+    /* We want to move bottom side up less than top side by value 33%  */
+}
+
+/*-------------------------------------
+     CONTROLLERS
+-------------------------------------*/
+.control{
+    position: absolute;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 1px solid #4563B0;
+    background-color: rgba(131, 166, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    cursor: pointer;
+    color: #4563B0;
+    transition: all .3s;
+}
+
+.control:hover{
+    background-color: #4563B0;
+    color: rgba(131, 166, 255, 0.7);
+}
+
+.control i{
+    pointer-events: none;
+}
+
+.left-arrow{
+    top: 50%;
+    left:-50%;
+}
+
+.right-arrow{
+    top:50%;
+    left: 135%;
+}
+
+.play-pause{
+    top: 140%;
+    left: 50%;
+}
+
